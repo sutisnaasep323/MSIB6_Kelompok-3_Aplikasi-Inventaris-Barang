@@ -2,8 +2,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.text.DecimalFormat;
 
-public class InventarisApp {
-    private ArrayList<Barang> inventaris;
+public class InventarisApp <T extends Barang>{
+    private ArrayList<T> inventaris;
     private Scanner scanner;
     private DecimalFormat formatRupiah;
 
@@ -14,14 +14,14 @@ public class InventarisApp {
     }
 
     // Metode untuk menambahkan barang baru ke inventaris
-    public void tambahBarang(Barang barang) {
+    public void tambahBarang(T barang) {
         inventaris.add(barang);
     }
 
     // Metode untuk menampilkan daftar barang dalam inventaris
     public void tampilkanDaftarBarang() {
         System.out.println("Daftar Barang dalam Inventaris:");
-        for (Barang barang : inventaris) {
+        for (T barang : inventaris) {
             System.out.println(barang.getKodeBarang() + " - " + barang.getNamaBarang() + " - " + formatRupiah.format(barang.hitungNilai()));
         }
     }
@@ -29,7 +29,7 @@ public class InventarisApp {
     // Metode untuk menghitung total nilai inventaris
     public double hitungTotalNilaiInventaris() {
         double totalNilai = 0;
-        for (Barang barang : inventaris) {
+        for (T barang : inventaris) {
             totalNilai += barang.hitungNilai();
         }
         return totalNilai;
@@ -50,12 +50,12 @@ public class InventarisApp {
             System.out.print("Tahun Pembuatan: ");
             int tahunPembuatan = Integer.parseInt(scanner.nextLine());
             BarangElektronik barangElektronik = new BarangElektronik(kodeBarang, namaBarang, hargaBarang, tahunPembuatan);
-            tambahBarang(barangElektronik);
+            tambahBarang((T)barangElektronik);
         } else if (jenisBarang.equalsIgnoreCase("pakaian")) {
             System.out.print("Ukuran Pakaian: ");
             String ukuranPakaian = scanner.nextLine();
             BarangPakaian barangPakaian = new BarangPakaian(kodeBarang, namaBarang, hargaBarang, ukuranPakaian);
-            tambahBarang(barangPakaian);
+            tambahBarang((T)barangPakaian);
         } else {
             System.out.println("Jenis barang tidak valid.");
         }
