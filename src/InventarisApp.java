@@ -62,10 +62,10 @@ public class InventarisApp <T extends Barang>{
                 BarangPakaian barangPakaian = new BarangPakaian(kodeBarang, namaBarang, hargaBarang, ukuranPakaian);
                 tambahBarang((T)barangPakaian);
             } else {
-                System.out.println("Jenis barang tidak valid.");
+                throw new InputMismatchException("Jenis barang tidak valid");
             }
-        }catch(Exception e){
-            System.out.println("Kesalahan dalam system, kami akan segera membenai");
+        } catch (InputMismatchException e) {
+            System.out.println("Kesalahan " + e.getMessage());
         }
     }
 
