@@ -20,9 +20,13 @@ public class InventarisApp <T extends Barang>{
 
     // Metode untuk menampilkan daftar barang dalam inventaris
     public void tampilkanDaftarBarang() {
-        System.out.println("Daftar Barang dalam Inventaris:");
-        for (T barang : inventaris) {
-            System.out.println(barang.getKodeBarang() + " - " + barang.getNamaBarang() + " - " + formatRupiah.format(barang.hitungNilai()));
+        try{
+            System.out.println("Daftar Barang dalam Inventaris:");
+            for (T barang : inventaris) {
+                System.out.println(barang.getKodeBarang() + " - " + barang.getNamaBarang() + " - " + formatRupiah.format(barang.hitungNilai()));
+            }
+        }catch(Exception e){
+            System.out.println("Kesalahan dalam system, kami akan segera membenai");
         }
     }
 
@@ -37,27 +41,31 @@ public class InventarisApp <T extends Barang>{
 
     // Metode untuk menambahkan barang baru berdasarkan input pengguna
     public void tambahBarangDariInput() {
-        System.out.println("Masukkan informasi barang baru:");
-        System.out.print("Kode Barang: ");
-        String kodeBarang = scanner.nextLine();
-        System.out.print("Nama Barang: ");
-        String namaBarang = scanner.nextLine();
-        System.out.print("Harga Barang: ");
-        double hargaBarang = Double.parseDouble(scanner.nextLine());
-        System.out.println("Barang Elektronik atau Barang Pakaian? (elektronik/pakaian): ");
-        String jenisBarang = scanner.nextLine();
-        if (jenisBarang.equalsIgnoreCase("elektronik")) {
-            System.out.print("Tahun Pembuatan: ");
-            int tahunPembuatan = Integer.parseInt(scanner.nextLine());
-            BarangElektronik barangElektronik = new BarangElektronik(kodeBarang, namaBarang, hargaBarang, tahunPembuatan);
-            tambahBarang((T)barangElektronik);
-        } else if (jenisBarang.equalsIgnoreCase("pakaian")) {
-            System.out.print("Ukuran Pakaian: ");
-            String ukuranPakaian = scanner.nextLine();
-            BarangPakaian barangPakaian = new BarangPakaian(kodeBarang, namaBarang, hargaBarang, ukuranPakaian);
-            tambahBarang((T)barangPakaian);
-        } else {
-            System.out.println("Jenis barang tidak valid.");
+        try{
+            System.out.println("Masukkan informasi barang baru:");
+            System.out.print("Kode Barang: ");
+            String kodeBarang = scanner.nextLine();
+            System.out.print("Nama Barang: ");
+            String namaBarang = scanner.nextLine();
+            System.out.print("Harga Barang: ");
+            double hargaBarang = Double.parseDouble(scanner.nextLine());
+            System.out.println("Barang Elektronik atau Barang Pakaian? (elektronik/pakaian): ");
+            String jenisBarang = scanner.nextLine();
+            if (jenisBarang.equalsIgnoreCase("elektronik")) {
+                System.out.print("Tahun Pembuatan: ");
+                int tahunPembuatan = Integer.parseInt(scanner.nextLine());
+                BarangElektronik barangElektronik = new BarangElektronik(kodeBarang, namaBarang, hargaBarang, tahunPembuatan);
+                tambahBarang((T)barangElektronik);
+            } else if (jenisBarang.equalsIgnoreCase("pakaian")) {
+                System.out.print("Ukuran Pakaian: ");
+                String ukuranPakaian = scanner.nextLine();
+                BarangPakaian barangPakaian = new BarangPakaian(kodeBarang, namaBarang, hargaBarang, ukuranPakaian);
+                tambahBarang((T)barangPakaian);
+            } else {
+                System.out.println("Jenis barang tidak valid.");
+            }
+        }catch(Exception e){
+            System.out.println("Kesalahan dalam system, kami akan segera membenai");
         }
     }
 
