@@ -10,7 +10,7 @@ public class InventarisApp <T extends Barang>{
     public InventarisApp() {
         inventaris = new ArrayList<>();
         scanner = new Scanner(System.in);
-        formatRupiah = new DecimalFormat("Rp ###,###.00");
+        formatRupiah = new DecimalFormat("Rp ###,###.000");
     }
 
     // Metode untuk menambahkan barang baru ke inventaris
