@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.text.DecimalFormat;
+import java.util.InputMismatchException;
 
 public class InventarisApp <T extends Barang>{
     private ArrayList<T> inventaris;
